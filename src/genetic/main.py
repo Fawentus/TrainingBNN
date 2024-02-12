@@ -1,11 +1,11 @@
 import torch
 from torch import nn
-from src.evolutionary.dataset import create_MNIST
-from src.evolutionary.models import Model1, Model2, Model3
+from src.genetic.dataset import create_MNIST
+from src.genetic.models import Model1, Model2, Model3
 from torchsummary import summary
 
 
-def train(name, batch_size=100, num_epochs=10, num_steps_evolutionary=100):
+def train(name, batch_size=100, num_epochs=10, num_steps_genetic=100):
     train_loader, _, input_size, output_size = create_MNIST(batch_size=batch_size)
 
     if name == "model1":
@@ -14,26 +14,26 @@ def train(name, batch_size=100, num_epochs=10, num_steps_evolutionary=100):
         model.train_and_save(train_loader,
                              criterion,
                              num_epochs=num_epochs,
-                             num_steps_evolutionary=num_steps_evolutionary)
+                             num_steps_genetic=num_steps_genetic)
     if name == "model2":
         criterion = nn.CrossEntropyLoss()  # nn.MSELoss()
         model = Model2(input_size, output_size)
         model.train_and_save(train_loader,
                              criterion,
                              num_epochs=num_epochs,
-                             num_steps_evolutionary=num_steps_evolutionary)
+                             num_steps_genetic=num_steps_genetic)
     if name == "model3":
         criterion = nn.CrossEntropyLoss()  # nn.MSELoss()
         model = Model3(input_size, output_size)
         model.train_and_save(train_loader,
                              criterion,
                              num_epochs=num_epochs,
-                             num_steps_evolutionary=num_steps_evolutionary)
+                             num_steps_genetic=num_steps_genetic)
 
 
 def load(name, batch_size=100):
     # torch.set_printoptions(threshold=200)
-    model = torch.load("../../data/models/evolutionary/" + name + ".pth")
+    model = torch.load("../../data/models/genetic/" + name + ".pth")
     model.eval()
     summary(model, input_size=(28 * 28 * 256,))
     for param in model.parameters():
@@ -51,5 +51,6 @@ def load(name, batch_size=100):
         print(f'Accuracy of the network on the 10000 test images: {acc} %')
 
 
-train("model3", num_epochs=200, num_steps_evolutionary=-1)
+train("model3", num_epochs=200, num_steps_genetic=-1)
 load("model3")
+

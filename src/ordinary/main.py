@@ -1,7 +1,7 @@
 import torch
 from torch import nn
-from src.backpropagation.dataset import create_MNIST
-from src.backpropagation.models import Model1, Model2, Model3
+from src.ordinary.dataset import create_MNIST
+from src.ordinary.models import Model1, Model2, Model3
 from torchsummary import summary
 
 
