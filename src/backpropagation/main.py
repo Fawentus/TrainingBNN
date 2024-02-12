@@ -1,7 +1,7 @@
 import torch
 from torch import nn
-from src.backpropagation.dataset import create_MNIST
-from src.backpropagation.models import Model1, Model2, Model3
+from dataset import create_MNIST
+from models import Model1, Model2, Model3
 from torchsummary import summary
 
 
@@ -28,7 +28,7 @@ def load(name, batch_size=100):
     model.eval()
     summary(model, input_size=(28 * 28 * 256,))
     for param in model.parameters():
-        print("PARAM:", param.shape, param)
+           print("PARAM:", param.shape, param)
 
     _, test_loader, _, _ = create_MNIST(batch_size=batch_size)
     with torch.no_grad():
