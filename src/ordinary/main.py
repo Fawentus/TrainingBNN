@@ -1,7 +1,7 @@
 import torch
 from torch import nn
-from src.ordinary.dataset import create_MNIST
-from src.ordinary.models import Model1, Model2, Model3
+from dataset import create_MNIST
+from models import Model1, Model2, Model3
 from torchsummary import summary
 
 

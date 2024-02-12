@@ -1,5 +1,4 @@
 import math
-import torch
 import torch.nn as nn
 import torch.nn.functional as Function
 from torch.autograd import Function as Grad

@@ -1,7 +1,7 @@
 import time
 import torch
 from torch import nn
-from src.backpropagation.layers import BinaryLinear, BinaryLinearOutput
+from layers import BinaryLinear, BinaryLinearOutput
 
 
 class AbstractModel(nn.Module):

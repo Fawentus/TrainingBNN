@@ -1,7 +1,7 @@
 import time
 import torch
 from torch import nn
-from src.genetic.layers import BinaryLinear, BinaryLinearOutput
+from layers import BinaryLinear, BinaryLinearOutput
 from heapq import nlargest
 
 

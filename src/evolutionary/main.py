@@ -1,7 +1,7 @@
 import torch
 from torch import nn
-from src.evolutionary.dataset import create_MNIST
-from src.evolutionary.models import Model1, Model2, Model3
+from dataset import create_MNIST
+from models import Model1, Model2, Model3
 from torchsummary import summary
 
 

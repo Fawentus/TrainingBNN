@@ -1,5 +1,5 @@
 import torch.nn as nn
-from src.evolutionary.internal_layers import BinaryInternalLinear, Activation
+from internal_layers import BinaryInternalLinear, Activation
 
 
 class BinaryLinear(nn.Module):
