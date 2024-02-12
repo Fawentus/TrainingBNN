@@ -24,7 +24,7 @@ class AbstractModel(nn.Module):
             out = layer(out)
         return out
 
-    def train_and_save(self, train_loader, criterion, learning_rate=0.01, num_epochs=100):
+    def train_and_save(self, device, train_loader, criterion, learning_rate=0.01, num_epochs=100):
         optimizer = torch.optim.SGD(self.parameters(), lr=learning_rate)
         print("Start training", self.name)
 
@@ -32,6 +32,8 @@ class AbstractModel(nn.Module):
         for epoch in range(num_epochs):
             loss_epoch = 0.
             for i, (images, labels) in enumerate(train_loader):
+                images, labels = images.to(device), labels.to(device)
+
                 # Forward pass
                 outputs = self(images)
                 loss = criterion(outputs, labels)

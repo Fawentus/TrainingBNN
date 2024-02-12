@@ -1,3 +1,4 @@
+import sys
 import torch
 from torch import nn
 from dataset import create_MNIST
@@ -7,25 +8,33 @@ from torchsummary import summary
 
 def train(name, batch_size=100, num_epochs=10, num_steps_evolutionary=100):
     train_loader, _, input_size, output_size = create_MNIST(batch_size=batch_size)
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    print(device, file=sys.stderr)
 
     if name == "model1":
         criterion = nn.CrossEntropyLoss()  # nn.MSELoss()
         model = Model1(input_size, output_size)
-        model.train_and_save(train_loader,
+        model.to(device)
+        model.train_and_save(device,
+                             train_loader,
                              criterion,
                              num_epochs=num_epochs,
                              num_steps_evolutionary=num_steps_evolutionary)
     if name == "model2":
         criterion = nn.CrossEntropyLoss()  # nn.MSELoss()
         model = Model2(input_size, output_size)
-        model.train_and_save(train_loader,
+        model.to(device)
+        model.train_and_save(device,
+                             train_loader,
                              criterion,
                              num_epochs=num_epochs,
                              num_steps_evolutionary=num_steps_evolutionary)
     if name == "model3":
         criterion = nn.CrossEntropyLoss()  # nn.MSELoss()
         model = Model3(input_size, output_size)
-        model.train_and_save(train_loader,
+        model.to(device)
+        model.train_and_save(device,
+                             train_loader,
                              criterion,
                              num_epochs=num_epochs,
                              num_steps_evolutionary=num_steps_evolutionary)

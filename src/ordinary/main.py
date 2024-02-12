@@ -1,3 +1,4 @@
+import sys
 import torch
 from torch import nn
 from dataset import create_MNIST
@@ -7,19 +8,24 @@ from torchsummary import summary
 
 def train(name, batch_size=100, num_epochs=10):
     train_loader, test_loader, input_size, output_size = create_MNIST(batch_size=batch_size)
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    print(device, file=sys.stderr)
 
     if name == "model1":
         model = Model1(input_size, output_size)
+        model.to(device)
         criterion = nn.CrossEntropyLoss()  # nn.MSELoss()
-        model.train_and_save(train_loader, criterion, num_epochs=num_epochs)
+        model.train_and_save(device, train_loader, criterion, num_epochs=num_epochs)
     if name == "model2":
         model = Model2(input_size, output_size)
+        model.to(device)
         criterion = nn.CrossEntropyLoss()  # nn.MSELoss()
-        model.train_and_save(train_loader, criterion, num_epochs=num_epochs)
+        model.train_and_save(device, train_loader, criterion, num_epochs=num_epochs)
     if name == "model3":
         model = Model3(input_size, output_size)
+        model.to(device)
         criterion = nn.CrossEntropyLoss()  # nn.MSELoss()
-        model.train_and_save(train_loader, criterion, num_epochs=num_epochs)
+        model.train_and_save(device, train_loader, criterion, num_epochs=num_epochs)
 
 
 def load(name, batch_size=100):

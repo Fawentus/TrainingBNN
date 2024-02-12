@@ -45,7 +45,7 @@ class AbstractModel(nn.Module):
         for layer in self.layers:
             layer.generate_population(size)
 
-    def train_and_save(self, train_loader, criterion, learning_rate=0.01, num_epochs=100, num_steps_genetic=100, stagnation=10, n=4, m=4, e=2):
+    def train_and_save(self, device, train_loader, criterion, learning_rate=0.01, num_epochs=100, num_steps_genetic=100, stagnation=10, n=4, m=4, e=2):
         optimizer = torch.optim.SGD(self.parameters(), lr=learning_rate)
         self.generate_population(n+m+e)
 
@@ -54,6 +54,8 @@ class AbstractModel(nn.Module):
         for epoch in range(num_epochs):
             loss_epoch = 0.
             for i, (images, labels) in enumerate(train_loader):
+                images, labels = images.to(device), labels.to(device)
+
                 # Forward pass
                 loss = criterion(self(images), labels)
 
