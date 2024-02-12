@@ -108,7 +108,7 @@ class AbstractModel(nn.Module):
         end = time.time() - start
         print("End training", self.name, "in", end / 60, "minutes or", end / 60 / 60, "hours")
 
-        torch.save(self, "../../data/models/genetic/" + self.name + ".pth")
+        torch.save(self, "./data/models/genetic/" + self.name + ".pth")
 
 
 class Model1(AbstractModel):

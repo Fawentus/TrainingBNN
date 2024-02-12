@@ -49,7 +49,7 @@ class AbstractModel(nn.Module):
         print("End training", self.name, "in", end/60, "minutes or", end/60/60, "hours")
 
         self.binarize() # бинаризует итоговые веса
-        torch.save(self, "../../data/models/backpropagation/" + self.name + ".pth")
+        torch.save(self, "./data/models/backpropagation/" + self.name + ".pth")
 
 
 class Model1(AbstractModel):

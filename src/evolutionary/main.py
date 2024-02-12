@@ -33,7 +33,7 @@ def train(name, batch_size=100, num_epochs=10, num_steps_evolutionary=100):
 
 def load(name, batch_size=100):
     # torch.set_printoptions(threshold=200)
-    model = torch.load("../../data/models/evolutionary/" + name + ".pth")
+    model = torch.load("./data/models/evolutionary/" + name + ".pth")
     model.eval()
     summary(model, input_size=(28 * 28 * 256,))
     for param in model.parameters():

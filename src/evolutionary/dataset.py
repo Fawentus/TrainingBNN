@@ -17,13 +17,13 @@ class OneHotColor:
 
 
 def create_MNIST(batch_size=100):
-    train_dataset = MNIST("../../data",
+    train_dataset = MNIST("./data",
                           train=True,
                           download=True,
                           transform=transforms.Compose([transforms.PILToTensor(), OneHotColor()]))
     train_loader = DataLoader(dataset=train_dataset, shuffle=True, drop_last=True, batch_size=batch_size)
 
-    test_dataset = MNIST("../../data",
+    test_dataset = MNIST("./data",
                          train=False,
                          download=True,
                          transform=transforms.Compose([transforms.PILToTensor(), OneHotColor()]))
