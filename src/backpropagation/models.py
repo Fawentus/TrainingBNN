@@ -1,3 +1,4 @@
+import sys
 import time
 import torch
 from torch import nn
@@ -47,8 +48,10 @@ class AbstractModel(nn.Module):
                 loss_epoch += loss.item()
                 # print(f'Epoch [{epoch + 1}/{num_epochs}], Step [{i + 1}/{n_total_steps}({n})], Loss: {loss.item():.4f}')
             print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss_epoch:.4f}')
+            print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss_epoch:.4f}', file=sys.stderr)
         end = time.time() - start
         print("End training", self.name, "in", end/60, "minutes or", end/60/60, "hours")
+        print("End training", self.name, "in", end / 60, "minutes or", end / 60 / 60, "hours", file=sys.stderr)
 
         self.binarize() # бинаризует итоговые веса
         torch.save(self, "./data/models/backpropagation/" + self.name + ".pth")
