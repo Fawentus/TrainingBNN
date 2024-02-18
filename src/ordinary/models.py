@@ -36,7 +36,7 @@ class AbstractModel(nn.Module):
                 optimizer.zero_grad()
 
                 loss_epoch += loss.item()
-                if i % 100 == 0:
+                if i % 10 == 0:
                     print(f'Epoch [{epoch + 1}/{num_epochs}], Step [{i + 1}/{n_total_steps}], Loss: {loss.item():.4f}')
                     print(f'Epoch [{epoch + 1}/{num_epochs}], Step [{i + 1}/{n_total_steps}], Loss: {loss.item():.4f}', file=sys.stderr)
             print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss_epoch:.4f}')
