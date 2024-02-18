@@ -60,5 +60,5 @@ def load(name, batch_size=100):
         print(f'Accuracy of the network on the 10000 test images: {acc} %')
 
 
-train("model3", num_epochs=200, num_steps_evolutionary=-1)
+train("model3", num_epochs=100, num_steps_evolutionary=-1)
 load("model3")

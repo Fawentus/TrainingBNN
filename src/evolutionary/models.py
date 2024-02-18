@@ -31,6 +31,7 @@ class AbstractModel(nn.Module):
 
     def train_and_save(self, device, train_loader, criterion, learning_rate=0.01, num_epochs=100, num_steps_evolutionary=100, stagnation=10):
         optimizer = torch.optim.SGD(self.parameters(), lr=learning_rate)
+        n_total_steps = len(train_loader)
         print("Start training", self.name)
 
         start = time.time()
@@ -64,6 +65,9 @@ class AbstractModel(nn.Module):
                 optimizer.zero_grad()
 
                 loss_epoch += loss.item()
+                if i % 100 == 0:
+                    print(f'Epoch [{epoch + 1}/{num_epochs}], Step [{i + 1}/{n_total_steps}], Loss: {loss.item():.4f}')
+                    print(f'Epoch [{epoch + 1}/{num_epochs}], Step [{i + 1}/{n_total_steps}], Loss: {loss.item():.4f}', file=sys.stderr)
                 # print(f'Epoch [{epoch + 1}/{num_epochs}], Step [{i + 1}/{n_total_steps}({n})], Loss: {loss.item():.4f}')
             print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss_epoch:.4f}')
             print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss_epoch:.4f}', file=sys.stderr)
